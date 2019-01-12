@@ -2,6 +2,9 @@
 
 {% block content %}
     <h1>Список публикаций</h1>
+    {% if user.is_authenticated %}
+        <p><a href="{% url 'webapp:post_create' %}">Добавить публикацию</a></p>
+    {% endif %}
     {% for post in post_list %}
         <p><a href="{% url 'webapp:post_detail' post.pk %}">{{ post.author }}.{{ post.title }}({{ post.public_data }})</a></p>
     {% endfor %}
