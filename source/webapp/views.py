@@ -1,7 +1,8 @@
 from django.shortcuts import render, reverse
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, View
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from webapp.models import UserInfo, Post
 from webapp.forms import PostForm, UpdatePostForm
+from django.urls import reverse_lazy
 
 class IndexListView(ListView):
     model = UserInfo
@@ -37,3 +38,9 @@ class PostUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse('webapp:post_detail', kwargs={'pk': self.object.pk})
+
+class PostDeleteView(DeleteView):
+    model = Post
+    template_name = 'post_delete.html'
+    success_url = reverse_lazy('webapp:post_list')
+

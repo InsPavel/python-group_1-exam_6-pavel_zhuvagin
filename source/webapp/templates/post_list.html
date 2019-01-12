@@ -6,6 +6,6 @@
         <p><a href="{% url 'webapp:post_create' %}">Добавить публикацию</a></p>
     {% endif %}
     {% for post in post_list %}
-        <p><a href="{% url 'webapp:post_detail' post.pk %}">{{ post.author }}.{{ post.title }}({{ post.public_data }})</a>{% if user.is_authenticated %} <a href="{% url 'webapp:post_update' post.pk %}">Изменить</a>\<a href="">Удалить</a>{% endif %}</p>
+        <p><a href="{% url 'webapp:post_detail' post.pk %}">{{ post.author }}.{{ post.title }}({{ post.public_data }})</a>{% if user.is_authenticated %} <a href="{% url 'webapp:post_update' post.pk %}">Изменить</a>\<a href="{% url 'webapp:post_delete' post.pk %}">Удалить</a>{% endif %}</p>
     {% endfor %}
 {% endblock %}
