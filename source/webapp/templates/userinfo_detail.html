@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if userinfo.name == user %}
+        <p><a href="{% url 'webapp:user_update' userinfo.pk %}">Личный кабинет</a></p>
+    {% endif %}
+        <p>Фото {{ userinfo.avatar }}</p>
+        <p>Имя: {{ userinfo.name }}</p>
+        <p>email: {{ userinfo.email }}</p>
+        <p><a href="#" id="button">Показать телефон</a></p>
+        Друзья:
+        {% for friend in userinfo.friends.all %}
+            <p>{{ friend }}</p>
+        {% endfor %}
+        {% for post in post_list %}
+            <p>{{ post.title }}</p>
+        {% endfor %}
+        <hr>
+{% endblock %}
+{% block scripts %}
+<script type="application/javascript">
+    let phone = document.getElementById("button");
+    phone.onclick = function(){
+        let show = document.getElementById('button');
+        button.innerHTML = 'Телефон: {{ userinfo.phone }}'
+    }
+</script>
+{% endblock %}

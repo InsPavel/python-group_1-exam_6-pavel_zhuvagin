@@ -28,6 +28,7 @@
             {% endif %}
         <li class="nav-item"><a href="{% url 'webapp:index' %}" class="nav-link">На главную</a></li>
         <li class="nav-item"><a href="{% url 'webapp:post_list' %}" class="nav-link">Список публикаций</a></li>
+        <li class="nav-item"><a href="{% url 'webapp:userinfo_list' %}" class="nav-link">Список пользователей</a></li>
         {% block menu %}{% endblock %}
         </ul>
     </div>
