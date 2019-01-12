@@ -5,7 +5,7 @@ from webapp.models import UserInfo, Post
 
 class UserInfoInLine(admin.StackedInline):
     model = UserInfo
-    fields = ['phone', 'avatar']
+    fields = ['phone', 'friends', 'avatar']
 
 class UserInfoAdmin(UserAdmin):
     inlines = [UserInfoInLine]

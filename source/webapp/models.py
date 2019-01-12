@@ -13,3 +13,6 @@ class Post(models.Model):
     title = models.TextField(max_length=200, verbose_name='Заголовок')
     text = models.TextField(max_length=2000, verbose_name='Текст')
     public_data = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return '%s. %s: %s' % (self.pk, self.author, self.title)
