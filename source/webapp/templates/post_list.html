@@ -3,6 +3,6 @@
 {% block content %}
     <h1>Список публикаций</h1>
     {% for post in post_list %}
-        <p>{{ post.author }}.{{ post.title }}({{ post.public_data }})</p>
+        <p><a href="{% url 'webapp:post_detail' post.pk %}">{{ post.author }}.{{ post.title }}({{ post.public_data }})</a></p>
     {% endfor %}
 {% endblock %}
