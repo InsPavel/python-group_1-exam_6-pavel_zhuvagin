@@ -1,3 +1,8 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from webapp.models import UserInfo, Post
 
-# Create your views here.
+class IndexListView(ListView):
+    model = UserInfo
+    template_name = 'index.html'
+
