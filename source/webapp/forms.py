@@ -5,3 +5,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         exclude = ['author']
+
+class UpdatePostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ['author']

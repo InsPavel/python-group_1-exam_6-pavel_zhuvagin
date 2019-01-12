@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse
-from django.views.generic import ListView, DetailView, CreateView, View
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, View
 from webapp.models import UserInfo, Post
-from webapp.forms import PostForm
+from webapp.forms import PostForm, UpdatePostForm
 
 class IndexListView(ListView):
     model = UserInfo
@@ -23,4 +23,17 @@ class PostCreateView(CreateView):
     form_class = PostForm
     template_name = 'post_create.html'
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse('webapp:post_detail', kwargs={'pk': self.object.pk})
+
+class PostUpdateView(UpdateView):
+    model = Post
+    form_class = UpdatePostForm
+    template_name = 'post_update.html'
+
+    def get_success_url(self):
+        return reverse('webapp:post_detail', kwargs={'pk': self.object.pk})
