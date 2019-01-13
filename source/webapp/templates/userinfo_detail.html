@@ -4,7 +4,9 @@
     {% if userinfo.name == user %}
         <p><a href="{% url 'webapp:user_update' userinfo.pk %}">Личный кабинет</a></p>
     {% endif %}
-        <p>Фото {{ userinfo.avatar }}</p>
+    {% if userinfo.avatar%}
+        <img src="{{ userinfo.avatar.url }}">
+    {% endif %}
         <p>Имя: {{ userinfo.name }}</p>
         <p>email: {{ userinfo.email }}</p>
         <p><a href="#" id="button">Показать телефон</a></p>
@@ -12,8 +14,9 @@
         {% for friend in userinfo.friends.all %}
             <p>{{ friend }}</p>
         {% endfor %}
-        {% for post in post_list %}
-            <p>{{ post.title }}</p>
+        <h4>Статьи:</h4>
+        {% for post in user.author.all %}
+            <p>{{ post.title }}({{ post.public_data }})</p>
         {% endfor %}
         <hr>
 {% endblock %}
